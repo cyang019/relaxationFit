@@ -43,7 +43,7 @@ def plot_all_fittings(fn, ts, peaks, params,\
     sharex=True,sharey=False,figsize=(10,20), titleunit="s",\
     xrange=(0,15),yrange=(0,60000),yrange_axis=[],\
     savefig=False,figname="demo.png"):
-    fig, axarr = plt.subplots(len(peaks)//2 ,2, \
+    fig, axarr = plt.subplots(len(peaks)//2 + len(peaks) % 2, 2, \
             sharex=sharex, sharey=sharey)
     '''Plot fittings from a list of parameters fitted from a table of
     peaks stored in pd.Dataframe.
