@@ -31,7 +31,12 @@ def fit_all_peaks(fn, ts, peaks):
     '''
 
     params = []
-    p0 = [1e4,1.0]
+    max_intensity = 0.0
+    for peak in peaks:
+        m = np.max(peak['val'])
+        if m> max_intensity:
+            max_intensity = m
+    p0 = [max_intensity,1.0]
     for peak in peaks:
         peak_pts = peak['val'].tolist()
         p0[0] = max(peak_pts)
@@ -64,7 +69,8 @@ def plot_all_fittings(fn, ts, peaks, params,\
         axarr[ya//2,ya%2].set_ylim(yrange)
     fig.set_figheight(figsize[1])
     fig.set_figwidth(figsize[0])
-    plt.savefig(figname)
+    if savefig:
+        plt.savefig(figname)
     plt.show()
 
 # save peaks to txt file
